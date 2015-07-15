@@ -17,6 +17,10 @@ class ScannerResult extends Component {
       </View>
     );
   }
+
+  componentWillUnmount() {
+    this.props.returnHandler()
+  }
 }
 
 var styles = StyleSheet.create({

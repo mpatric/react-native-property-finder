@@ -9,47 +9,34 @@ var {
   TouchableHighlight
 } = React;
 
-var Camera = require('react-native-camera');
-var ScannerResult = require('./ScannerResult')
+var Scanner = require('./Scanner');
+var ScannerResult = require('./ScannerResult');
 
 class ScannerView extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      scanned: false,
-      cameraType: Camera.constants.Type.back
+      scanned: false
     };
   }
 
   render() {
     return (
       <View style={styles.container}>
-        <Camera
-          ref="cam"
-          style={styles.camera}
-          onBarCodeRead={this.onBarCodeRead.bind(this)}
-          type={this.state.cameraType}
-          barCodeType="qr"
-        >
-        </Camera>
-        <TouchableHighlight onPress={this.onSwitchCamera.bind(this)}>
-          <Text>Switch Camera</Text>
-        </TouchableHighlight>
+        <Scanner style={styles.scanner} resultHandler={this.handleResult.bind(this)}/>
       </View>
     );
   }
 
-  onBarCodeRead(e) {
+  handleResult(result) {
     if (!this.state.scanned) {
       this.state.scanned = true
-      this.props.navigator.push({title: 'Scan Result', component: ScannerResult, passProps: {data: e.data}})
+      this.props.navigator.push({title: 'Scan Result', component: ScannerResult, passProps: {data: result.data, returnHandler: this.reset.bind(this)}});
     }
   }
 
-  onSwitchCamera() {
-    var state = this.state;
-    state.cameraType = (state.cameraType === Camera.constants.Type.back) ? Camera.constants.Type.front : Camera.constants.Type.back;
-    this.setState(state);
+  reset() {
+    this.state.scanned = false
   }
 }
 
@@ -60,9 +47,7 @@ var styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: 'transparent',
   },
-  camera: {
-    height: 250,
-    width: 250
+  scanner: {
   }
 });
 
