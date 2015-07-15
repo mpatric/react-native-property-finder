@@ -13,6 +13,7 @@ var {
 } = React;
 
 var SearchResults = require('./SearchResults');
+var ScannerView = require('./ScannerView');
 
 function urlForQueryAndPage(key, value, pageNumber) {
   var data = {
@@ -56,6 +57,9 @@ class SearchPage extends Component {
         </View>
         <TouchableHighlight style={styles.button} underlayColor='#99d9f4' onPress={this.onLocationPressed.bind(this)}>
           <Text style={styles.buttonText}>Location</Text>
+        </TouchableHighlight>
+        <TouchableHighlight style={styles.button} underlayColor='#99d9f4' onPress={this.onScanPressed.bind(this)}>
+          <Text style={styles.buttonText}>Scan a QR Code</Text>
         </TouchableHighlight>
         <Image source={require('image!house')} style={styles.image}/>
         {spinner}
@@ -108,6 +112,10 @@ class SearchPage extends Component {
         })
       }
     )
+  }
+
+  onScanPressed() {
+    this.props.navigator.push({title: 'Scan', component: ScannerView})
   }
 }
 
