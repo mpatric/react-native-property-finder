@@ -9,18 +9,6 @@ var {
 
 var SearchPage = require('./SearchPage');
 
-var styles = StyleSheet.create({
-  text: {
-    color: 'black',
-    backgroundColor: 'white',
-    fontSize: 30,
-    margin: 80
-  },
-  container: {
-    flex: 1
-  }
-});
-
 class PropertyFinder extends React.Component {
   render() {
     return (
@@ -33,5 +21,17 @@ class PropertyFinder extends React.Component {
     );
   }
 }
+
+var styles = StyleSheet.create({
+  text: {
+    color: 'black',
+    backgroundColor: 'white',
+    fontSize: 30,
+    margin: 80
+  },
+  container: {
+    flex: 1
+  }
+});
 
 AppRegistry.registerComponent('PropertyFinder', () => PropertyFinder);

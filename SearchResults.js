@@ -13,34 +13,6 @@ var {
 
 var PropertyView = require('./PropertyView');
 
-var styles = StyleSheet.create({
-  thumb: {
-    width: 80,
-    height: 80,
-    marginRight: 10
-  },
-  textContainer: {
-    flex: 1
-  },
-  separator: {
-    height: 1,
-    backgroundColor: '#dddddd'
-  },
-  price: {
-    fontSize: 25,
-    fontWeight: 'bold',
-    color: '#48BBEC'
-  },
-  title: {
-    fontSize: 20,
-    color: '#656565'
-  },
-  rowContainer: {
-    flexDirection: 'row',
-    padding: 10
-  }
-});
-
 class SearchResults extends Component {
   constructor(props) {
     super(props);
@@ -80,5 +52,33 @@ class SearchResults extends Component {
     this.props.navigator.push({title: "Property", component: PropertyView, passProps: {property: property}});
   }
 }
+
+var styles = StyleSheet.create({
+  thumb: {
+    width: 80,
+    height: 80,
+    marginRight: 10
+  },
+  textContainer: {
+    flex: 1
+  },
+  separator: {
+    height: 1,
+    backgroundColor: '#dddddd'
+  },
+  price: {
+    fontSize: 25,
+    fontWeight: 'bold',
+    color: '#48BBEC'
+  },
+  title: {
+    fontSize: 20,
+    color: '#656565'
+  },
+  rowContainer: {
+    flexDirection: 'row',
+    padding: 10
+  }
+});
 
 module.exports = SearchResults;
